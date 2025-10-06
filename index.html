@@ -5,19 +5,51 @@
   <title>Heart Animation | @coding.stella</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
   <style>
-    body {
-      position:relative
+   body {
+      position: relative;
+      background: #000;
+      overflow: hidden;
     }
-    .text{
-      position:absolute;
-      top:465px;
-      left:50%;
-      transform:translate(-50%,-50%);
-      font-family: 'Arial', sans-serif;
-      font-size:24px;
-      color:#fff;
-      pointer-events:none;
+
+    svg {
+      width: 300px;
+      display: block;
+      margin: 120px auto 0;
+    }
+
+    .text {
+      position: absolute;
+      top: 465px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fcb69f);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradientMove 3s linear infinite, glow 1.5s ease-in-out infinite;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
       z-index: 100;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #ff8fa3, 0 0 10px #ffb6c1, 0 0 20px #ffc0cb;
+      }
+      50% {
+        text-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff758f, 0 0 35px #ffa6c1;
+      }
     }
   </style>
 </head>
@@ -30,8 +62,18 @@
     <script src='https://cdn.jsdelivr.net/npm/three@0.136.0/build/three.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/three@0.136.0/examples/js/controls/OrbitControls.js'></script>
     <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script><script  src="./script.js"></script>
+      <script src='https://unpkg.com/gsap@3/dist/gsap.min.js'></script>
 
-
+<script>
+    // Hiệu ứng chữ nhấp nháy nhẹ bằng GSAP
+    gsap.to(".text", {
+      scale: 1.1,
+      duration: 1,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut"
+    });
+  </script>
 
 </body>
 </html>
